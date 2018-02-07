@@ -11,11 +11,14 @@ Hopefully from there it will be self explanatory!
 # Building
 I assume Java 8 and maven 3.5 is installed and working.
 
-If so, fire up `mvn clean package`
+If so, fire up 
+
+`mvn clean package`
 
 # Running
 Execute the jar! 
-java -jar target/cic-0.0.1-SNAPSHOT.jar
+
+`java -jar target/cic-0.0.1-SNAPSHOT.jar`
 
 # To exit running
 Ctrl+C should kill it nice and dead.

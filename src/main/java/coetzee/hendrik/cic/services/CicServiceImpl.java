@@ -9,6 +9,8 @@ package coetzee.hendrik.cic.services;
 
 import java.util.Calendar;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -41,6 +43,7 @@ public class CicServiceImpl implements CicService {
      * @see coetzee.hendrik.cic.services.CicService#register(coetzee.hendrik.cic.rest.CicRegistration)
      */
     @Override
+    @Transactional
     public CicEntity register(CicRegistration nuCic) {
         EntityEntity e = entityRepo.findOne(nuCic.getEntity().getEntityId());
         if (e == null) {

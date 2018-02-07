@@ -36,9 +36,9 @@ public class SpringFoxConfig {
 
     private ApiInfo apiInfo() {
         final ApiInfoBuilder builder = new ApiInfoBuilder();
-        builder.contact(new springfox.documentation.service.Contact("HS Coetzee", "https://github.com", ""));
-//        builder.contact(new Contact("AfriGIS (Pty) Ltd", "https://www.afrigis.com", "bombela@afrigis.co.za"))
-//                .description(appDesc).title(appName).version(apiVersion);
+        builder.contact(new springfox.documentation.service.Contact("HS Coetzee", "https://github.com/demaniak/", ""));
+        builder.description("The Cool Cucumber. Sorry, nothing to do with BDD!");
+        builder.version("1");
 
         return builder.build();
     }

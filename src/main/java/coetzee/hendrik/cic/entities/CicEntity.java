@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
@@ -25,11 +26,12 @@ import lombok.NoArgsConstructor;
  *
  */
 @Entity
+@Table(name = "Cic")
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class Cic {
+public class CicEntity {
     /**
      * A note here: personally I would rather go with a UUID as ID.
      * Just opens up so many good options. Do I hear "scaling"?
@@ -63,5 +65,5 @@ public class Cic {
     private Calendar cicTimestamp;
 
     @ManyToOne
-    private coetzee.hendrik.cic.entities.Entity entity;
+    private coetzee.hendrik.cic.entities.EntityEntity entity;
 }

@@ -16,8 +16,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import coetzee.hendrik.cic.entities.Cic;
-import coetzee.hendrik.cic.entities.Entity;
+import coetzee.hendrik.cic.entities.CicEntity;
+import coetzee.hendrik.cic.entities.EntityEntity;
 import coetzee.hendrik.cic.repo.CicRepository;
 import coetzee.hendrik.cic.repo.EntityRepository;
 
@@ -31,9 +31,9 @@ public class CicApplicationTests {
     @Autowired
     private CicRepository cicRepo;
 
-    private Entity testEntity;
+    private EntityEntity testEntity;
     
-    private Cic testCic;
+    private CicEntity testCic;
 
     @Before
     public void before() {
@@ -41,12 +41,12 @@ public class CicApplicationTests {
         entityRepo.deleteAll();
 
         //@formatter:off
-        testEntity = Entity.builder()
+        testEntity = EntityEntity.builder()
                 .emailAddress(RandomStringUtils.randomAlphanumeric(10)+"@" + RandomStringUtils.randomAlphanumeric(10))
                 .entityName(RandomStringUtils.random(128))              
                 .build();
         
-        testCic = Cic.builder()
+        testCic = CicEntity.builder()
                 .body(RandomStringUtils.random(300))
                 .cicTimestamp(Calendar.getInstance())
                 .cicType(RandomStringUtils.random(64))
@@ -63,66 +63,66 @@ public class CicApplicationTests {
 
     @Test(expected = ConstraintViolationException.class)
     public void testConstraintValidationOnEmptyEntity() {
-        entityRepo.save(Entity.builder().build());
+        entityRepo.save(EntityEntity.builder().build());
     }
 
     @Test
     public void testSaveOfOkEntity() {
 
-        final Entity saved = entityRepo.save(testEntity);
+        final EntityEntity saved = entityRepo.save(testEntity);
 
         assertNotNull(saved);
         assertNotNull(saved.getEntityId());
 
-        final Entity loaded = entityRepo.findOne(saved.getEntityId());
+        final EntityEntity loaded = entityRepo.findOne(saved.getEntityId());
         assertEquals(saved, loaded);
     }
 
     @Test
     public void testEntityDeletion() {
-        final Entity saved = entityRepo.save(testEntity);
+        final EntityEntity saved = entityRepo.save(testEntity);
 
         assertNotNull(saved);
         assertNotNull(saved.getEntityId());
         
         entityRepo.delete(saved);
         
-        final Entity loaded = entityRepo.findOne(saved.getEntityId());
+        final EntityEntity loaded = entityRepo.findOne(saved.getEntityId());
         assertNull (loaded);
     }
     
     @Test(expected = ConstraintViolationException.class)
     public void testConstraintValidationOnEmptyCic() {
-        cicRepo.save(Cic.builder().build());
+        cicRepo.save(CicEntity.builder().build());
     }
 
     @Test
     public void testSaveOfOkCic() {
         
-        Entity savedEnt = entityRepo.save(testEntity);
+        EntityEntity savedEnt = entityRepo.save(testEntity);
 
         testCic.setEntity(savedEnt);
-        final Cic saved = cicRepo.save(testCic);
+        final CicEntity saved = cicRepo.save(testCic);
 
         assertNotNull(saved);
         assertNotNull(saved.getCicId());
 
-        final Cic loaded = cicRepo.findOne(saved.getCicId());
+        final CicEntity loaded = cicRepo.findOne(saved.getCicId());
         assertEquals(saved, loaded);
     }
 
     @Test
     public void testCicDeletion() {
-        Entity savedEnt = entityRepo.save(testEntity);
+        EntityEntity savedEnt = entityRepo.save(testEntity);
         testCic.setEntity(savedEnt);
-        final Cic saved = cicRepo.save(testCic);
+        final CicEntity saved = cicRepo.save(testCic);
 
         assertNotNull(saved);
         assertNotNull(saved.getCicId());
         
         cicRepo.delete(saved);
         
-        final Cic loaded = cicRepo.findOne(saved.getCicId());
+        final CicEntity loaded = cicRepo.findOne(saved.getCicId());
         assertNull (loaded);
     }
 

@@ -9,12 +9,12 @@ package coetzee.hendrik.cic.repo;
 
 import org.springframework.data.repository.CrudRepository;
 
-import coetzee.hendrik.cic.entities.Cic;
+import coetzee.hendrik.cic.entities.CicEntity;
 
 /**
- * Repository for accessing {@link Cic} entityes.
+ * Repository for accessing {@link CicEntity} entityes.
  * 
  */
-public interface CicRepository extends CrudRepository<Cic, Long> {
+public interface CicRepository extends CrudRepository<CicEntity, Long> {
 
 }

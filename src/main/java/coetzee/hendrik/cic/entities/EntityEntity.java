@@ -4,6 +4,7 @@ import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -16,15 +17,16 @@ import lombok.NoArgsConstructor;
 
 /**
  * 
- * Represents the destination to which a {@link Cic} was/is to be sent.
+ * Represents the destination to which a {@link CicEntity} was/is to be sent.
  *
  */
 @javax.persistence.Entity
+@Table(name = "Entity")
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class Entity {
+public class EntityEntity {
     /**
      * A note here: personally I would rather go with a UUID as ID.
      * Just opens up so many good options.

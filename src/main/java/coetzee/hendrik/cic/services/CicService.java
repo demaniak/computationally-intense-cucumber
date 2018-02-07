@@ -23,4 +23,11 @@ public interface CicService {
      */
     CicEntity register(CicRegistration nuCic);
 
+    /**
+     * 
+     * @param cidId id of the entity
+     * @return the entity
+     */
+    CicEntity get(Long cidId);
+
 }

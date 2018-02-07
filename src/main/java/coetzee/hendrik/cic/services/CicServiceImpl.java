@@ -70,6 +70,12 @@ public class CicServiceImpl implements CicService {
         cal.setTimeInMillis(nuCic.getCicTimestamp());
         return cal;
     }
+
+    @Override
+    @Transactional
+    public CicEntity get(Long cidId) {
+        return cicRepo.findOne(cidId);
+    }
     
 
 }

@@ -31,7 +31,7 @@ public class SpringFoxConfig {
     @Bean
     public Docket api() {
         return new Docket(DocumentationType.SWAGGER_2).select().apis(RequestHandlerSelectors.any())
-                .paths(PathSelectors.regex("/cic*")).build().apiInfo(apiInfo());
+                .paths(PathSelectors.regex("/cic.*")).build().apiInfo(apiInfo());
     }
 
     private ApiInfo apiInfo() {

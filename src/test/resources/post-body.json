@@ -1,0 +1,12 @@
+{
+  "cicType": "string",
+  "subject": "string",
+  "body": "string",
+  "sourceSystem": "string",
+  "cicTimestamp": 0,
+  "entity": {
+    "entityId": 0,
+    "entityName": "string",
+    "emailAddress": "M@M"
+  }
+}

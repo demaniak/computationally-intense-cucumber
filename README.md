@@ -35,7 +35,7 @@ Execute the jar!
 ## Docker 
 Or you could run the docker image living on line!
 
-`docker run -it --rm -p 8080:8080 demaniak/cic:0.0.1-SNAPSHOT
+`docker run -it --rm -p 8080:8080 demaniak/cic:0.0.1-SNAPSHOT`
 
 # To exit running
 Ctrl+C should kill it nice and dead.

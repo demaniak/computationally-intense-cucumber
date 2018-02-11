@@ -10,9 +10,9 @@ Start up, visit one of (or both!)
 
 Hopefully from there it will be self explanatory!
 
-## This is not sself explanatory at all!
+## This is not self explanatory at all!
 ### http://localhost:8080/swagger-ui.html
-Here we have a swagger UI demonstrating, the rest end points exactly as specified.
+Here we have a [swagger UI](http://springfox.github.io/springfox/) demonstrating the rest end points exactly as specified.
 Go ahead, hit the "Try it" buttons :)
 
 ### http://localhost:8080

@@ -27,6 +27,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import coetzee.hendrik.cic.entities.CicEntity;
+import coetzee.hendrik.cic.err.CicNotFoundException;
 import coetzee.hendrik.cic.err.CicRegistrationException;
 import coetzee.hendrik.cic.services.CicService;
 import lombok.extern.slf4j.Slf4j;
@@ -63,5 +64,10 @@ public class CicController {
     @ExceptionHandler(CicRegistrationException.class)
     public Callable<ResponseEntity<Object>> handleCicRegistrationException (CicRegistrationException e) {
         return () -> ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).contentType(MediaType.TEXT_PLAIN).body(e.getMessage());
+    }
+    
+    @ExceptionHandler(CicNotFoundException.class)
+    public ResponseEntity<Object> handleCicNotFoundException (CicNotFoundException e) {
+        return  ResponseEntity.status(HttpStatus.NOT_FOUND).contentType(MediaType.TEXT_PLAIN).body(e.getMessage());
     }
 }

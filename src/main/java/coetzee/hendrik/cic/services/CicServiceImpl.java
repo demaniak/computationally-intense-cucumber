@@ -16,6 +16,7 @@ import org.springframework.stereotype.Service;
 
 import coetzee.hendrik.cic.entities.CicEntity;
 import coetzee.hendrik.cic.entities.EntityEntity;
+import coetzee.hendrik.cic.err.CicNotFoundException;
 import coetzee.hendrik.cic.err.CicRegistrationException;
 import coetzee.hendrik.cic.repo.CicRepository;
 import coetzee.hendrik.cic.repo.EntityRepository;
@@ -80,7 +81,13 @@ public class CicServiceImpl implements CicService {
     @Override
     @Transactional
     public CicEntity get(Long cidId) {
-        return cicRepo.findOne(cidId);
+        final CicEntity found = cicRepo.findOne(cidId);
+        
+        if (found == null) {
+            throw new CicNotFoundException("Unabled to find Cic "+ cidId);
+        }
+        
+        return found;
     }
 
 }

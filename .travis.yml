@@ -7,6 +7,5 @@ services:
 script:
   - docker --version
   - docker login -u $DOCKER_HUB_USER -p $DOCKER_HUB_PASSWORD 
-  - mvn clean verify deploy
-
-   
+  - mkdir -p /cic
+  - mvn clean verify deploy   

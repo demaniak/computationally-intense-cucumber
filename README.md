@@ -20,6 +20,7 @@ Go ahead, hit the "Try it" buttons :)
 - https://martinfowler.com/articles/richardsonMaturityModel.html
 - https://damienfremont.com/2017/11/23/rest-api-maturity-levels-from-0-to-5/
 - http://timelessrepo.com/haters-gonna-hateoas
+- http://javasampleapproach.com/spring-framework/spring-data/use-hal-browser-spring-data-rest-springboot-mysql
 
 So HATE(oas) it or love it, there is a movement towards "REST nirvana".
 

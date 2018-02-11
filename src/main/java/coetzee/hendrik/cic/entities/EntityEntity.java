@@ -18,6 +18,8 @@ import lombok.NoArgsConstructor;
 /**
  * 
  * Represents the destination to which a {@link CicEntity} was/is to be sent.
+ * "Entity" is an awkward name (collides with for example, {@link javax.persistence.Entity}), so 
+ * now we have the even more awkward name of EntityEntity.
  *
  */
 @javax.persistence.Entity

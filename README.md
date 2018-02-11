@@ -4,9 +4,30 @@ A spot of practice for some reasons. You will probably not be interested.
 # What's in the box?
 A spring boot application :)
 
-Start up, visit http://localhost:8080/swagger-ui.html
+Start up, visit one of (or both!)
+- http://localhost:8080/swagger-ui.html
+- http://localhost:8080
 
 Hopefully from there it will be self explanatory!
+
+## This is not sself explanatory at all!
+### http://localhost:8080/swagger-ui.html
+Here we have a swagger UI demonstrating, the rest end points exactly as specified.
+Go ahead, hit the "Try it" buttons :)
+
+### http://localhost:8080
+#### Reading
+- https://martinfowler.com/articles/richardsonMaturityModel.html
+- https://damienfremont.com/2017/11/23/rest-api-maturity-levels-from-0-to-5/
+- http://timelessrepo.com/haters-gonna-hateoas
+
+So HATE(oas) it or love it, there is a movement towards "REST nirvana".
+
+So, at the application root, you will find a HAL browser, which you can use to explore the
+API.
+
+Note that the endpoints here are, by necessity NOT exactly as specified.
+
 
 # Building
 I assume Java 8 and maven 3.5 is installed and working.

@@ -7,7 +7,7 @@
  */
 package coetzee.hendrik.cic.repo;
 
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.repository.PagingAndSortingRepository;
 
 import coetzee.hendrik.cic.entities.CicEntity;
 
@@ -15,6 +15,6 @@ import coetzee.hendrik.cic.entities.CicEntity;
  * Repository for accessing {@link CicEntity} entityes.
  * 
  */
-public interface CicRepository extends CrudRepository<CicEntity, Long> {
+public interface CicRepository extends PagingAndSortingRepository<CicEntity, Long> {
 
 }

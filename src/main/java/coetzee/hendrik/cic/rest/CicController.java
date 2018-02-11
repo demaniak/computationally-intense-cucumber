@@ -30,13 +30,12 @@ import coetzee.hendrik.cic.entities.CicEntity;
 import coetzee.hendrik.cic.err.CicNotFoundException;
 import coetzee.hendrik.cic.err.CicRegistrationException;
 import coetzee.hendrik.cic.services.CicService;
-import lombok.extern.slf4j.Slf4j;
+import io.swagger.annotations.ApiOperation;
 
 /**
  * Rest Controller for {@link CicEntity}'s
  */
 @RestController
-@Slf4j
 public class CicController {
 
     private CicService cicServ;
@@ -46,6 +45,7 @@ public class CicController {
         this.cicServ = cicServ;
     }
 
+    @ApiOperation(value="Registers a new Cic.",notes="If the attached Entity does not exist, it will be created.")
     @RequestMapping(method = POST, path = "/cic")
     public Callable<ResponseEntity<Object>> registerCic(@Valid @RequestBody CicRegistration nuCic) {
         return () -> {            
@@ -56,6 +56,7 @@ public class CicController {
         };
     }
 
+    @ApiOperation(value="Retrieves an existing Cic.")
     @RequestMapping(method = GET, path = "/cic/{cidId}")
     public Callable<ResponseEntity<CicEntity>> get(@PathVariable Long cidId) {
         return () -> ResponseEntity.ok(cicServ.get(cidId));

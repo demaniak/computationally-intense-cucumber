@@ -18,6 +18,7 @@ import org.junit.Test;
 
 import coetzee.hendrik.cic.entities.CicEntity;
 import coetzee.hendrik.cic.entities.EntityEntity;
+import coetzee.hendrik.cic.err.CicNotFoundException;
 import coetzee.hendrik.cic.repo.CicRepository;
 import coetzee.hendrik.cic.repo.EntityRepository;
 import coetzee.hendrik.cic.rest.CicRegistration;
@@ -25,26 +26,26 @@ import coetzee.hendrik.cic.services.CicServiceImpl;
 
 public class CicServiceTests {
     private CicRepository cicRepoMock;
-    
+
     private EntityRepository entityRepoMock;
-    
+
     private CicServiceImpl cicservice;
-    
+
     private EntityEntity testEntity;
     private CicEntity testCic;
-    
+
     private CicRegistration cicReg;
-    
+
     @Before
-    public void before () {
-        cicRepoMock = mock (CicRepository.class);
-        
-        entityRepoMock = mock (EntityRepository.class);
-        
+    public void before() {
+        cicRepoMock = mock(CicRepository.class);
+
+        entityRepoMock = mock(EntityRepository.class);
+
         cicservice = new CicServiceImpl();
         cicservice.setCicRepo(cicRepoMock);
         cicservice.setEntityRepo(entityRepoMock);
-        
+
         //@formatter:off
         testEntity = EntityEntity.builder()
                 .emailAddress("m@m")
@@ -75,37 +76,45 @@ public class CicServiceTests {
                 .build();
         //@formatter:on
     }
-    
-    private Long getRandLong () {
+
+    private Long getRandLong() {
         return new Random().nextLong();
     }
 
     @Test
     public void testRegister() {
-        when (entityRepoMock.findOne(testEntity.getEntityId())).thenReturn(testEntity);
-        when (cicRepoMock.save(any(CicEntity.class))).thenReturn(testCic);
+        when(entityRepoMock.findOne(testEntity.getEntityId())).thenReturn(testEntity);
+        when(cicRepoMock.save(any(CicEntity.class))).thenReturn(testCic);
 
         CicEntity cicEnt = cicservice.register(cicReg);
 
-        verify(entityRepoMock,times(1)).findOne(testEntity.getEntityId());
-        verify (cicRepoMock,times (1)).save(any(CicEntity.class));
+        verify(entityRepoMock, times(1)).findOne(testEntity.getEntityId());
+        verify(cicRepoMock, times(1)).save(any(CicEntity.class));
         assertNotNull(cicEnt);
-        
-        
+
     }
 
     @Test
-    public void testGet() {
-        Long randLong= getRandLong();
-        
-        CicEntity shouldBeNull = cicservice.get(randLong);
-        assertNull (shouldBeNull);
-        
-        when (cicRepoMock.findOne(randLong)).thenReturn(testCic);
-        
+    public void testGetWithExisting() {
+        Long randLong = getRandLong();
+
+        when(cicRepoMock.findOne(randLong)).thenReturn(testCic);
+
         CicEntity shouldNotBeNull = cicservice.get(randLong);
         assertEquals(testCic, shouldNotBeNull);
-        verify(cicRepoMock,times (2)).findOne(randLong);
+
+        verify(cicRepoMock, times(1)).findOne(randLong);
+    }
+
+    @Test(expected = CicNotFoundException.class)
+    public void testGetWithNonExisting() {
+        Long randLong = getRandLong();
+
+        when(cicRepoMock.findOne(randLong)).thenReturn(null);
+
+        CicEntity shouldBeNull = cicservice.get(randLong);
+        //Should not get here btw.
+        assertNull(shouldBeNull);
     }
 
 }

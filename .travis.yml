@@ -16,7 +16,4 @@ script:
 after_success:
   - docker --version
   - docker login -u $DOCKER_HUB_USER -p $DOCKER_HUB_PASSWORD 
-  - echo $HOME
-  - mkdir -p "$HOME/releases"
-  - mkdir -p "$HOME/snapshots"
-  - mvn -DreleaseRepoUrl="$HOME/releases" -DsnapshotRepoUrl="$HOME/snapshots" deploy   
+  - "mvn -P build-docker dockerfile:build dockerfile:push" 

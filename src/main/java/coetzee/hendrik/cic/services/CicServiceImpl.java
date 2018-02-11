@@ -23,7 +23,7 @@ import coetzee.hendrik.cic.repo.EntityRepository;
 import coetzee.hendrik.cic.rest.CicRegistration;
 
 /**
- * Default implementation.
+ * Default implementation of {@link CicService}.
  * 
  */
 @Service

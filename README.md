@@ -15,6 +15,9 @@ Hopefully from there it will be self explanatory!
 Here we have a [swagger UI](http://springfox.github.io/springfox/) demonstrating the rest end points exactly as specified.
 Go ahead, hit the "Try it" buttons :)
 
+#### Note
+Please ignore the current error relating to "Could not resolve pointer: /definitions/Calendar" - it does NOT affect the functioning of the API in anyway.
+
 ### http://localhost:8080
 #### Reading
 - https://martinfowler.com/articles/richardsonMaturityModel.html

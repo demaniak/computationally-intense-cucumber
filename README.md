@@ -69,5 +69,4 @@ Ctrl+C should kill it nice and dead.
 If you would like to work on the source code, your IDE will seem upset until
 you introduce it to [lombok](https://projectlombok.org/).
 
-Installing it in your IDE will change your life.
-
+Installing it in your IDE will change your life. Trust me!

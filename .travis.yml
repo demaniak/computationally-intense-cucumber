@@ -4,8 +4,18 @@ sudo: required
 services:
   - docker # required, but travis uses older version of docker :(
 
+cache:
+  directories:
+  - "$HOME/.cache"
+
 script:
   - docker --version
   - docker login -u $DOCKER_HUB_USER -p $DOCKER_HUB_PASSWORD 
-  - mkdir -p /cic
-  - mvn clean verify deploy   
+  - mvn clean verify 
+  
+after_success:
+  - docker --version
+  - docker login -u $DOCKER_HUB_USER -p $DOCKER_HUB_PASSWORD 
+  - mkdir -p $HOME/releases
+  - mkdir -p $HOME/snapshots
+  - mvn -DreleaseRepoUrl=$HOME/releases -DsnapshotRepoUrl=$HOME/snapshots deploy   

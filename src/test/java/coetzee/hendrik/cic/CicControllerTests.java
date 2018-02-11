@@ -32,6 +32,7 @@ import org.springframework.test.web.servlet.RequestBuilder;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
 import coetzee.hendrik.cic.entities.CicEntity;
+import coetzee.hendrik.cic.err.CicNotFoundException;
 import coetzee.hendrik.cic.err.CicRegistrationException;
 import coetzee.hendrik.cic.rest.CicController;
 import coetzee.hendrik.cic.rest.CicRegistration;
@@ -94,7 +95,23 @@ public class CicControllerTests {
                 .andReturn();
 
         //Not entirely sure WHY status should be 200?? BUT the exception does rais it's ahead above, so. Ok.
-        mockMvc.perform(asyncDispatch(mvcResult)).andExpect(status().isOk());
+        mockMvc.perform(asyncDispatch(mvcResult)).andExpect(status().is(HttpStatus.INTERNAL_SERVER_ERROR.value()));
+
+    }
+    
+    @Test
+    public void testGetException() throws Exception {
+        when(cicServMock.get(any(Long.class))).thenThrow(CicNotFoundException.class);
+
+        RequestBuilder requestBuilder = MockMvcRequestBuilders.get("/cic/5")               
+                .accept(MediaType.APPLICATION_JSON);
+
+        MvcResult mvcResult = mockMvc.perform(requestBuilder).andExpect(request().asyncStarted())
+                .andExpect(request().asyncResult(instanceOf(CicNotFoundException.class))).andExpect(status().isOk())
+                .andReturn();
+
+        //Not entirely sure WHY status should be 200?? BUT the exception does rais it's ahead above, so. Ok.
+        mockMvc.perform(asyncDispatch(mvcResult)).andExpect(status().is(HttpStatus.NOT_FOUND.value()));
 
     }
 

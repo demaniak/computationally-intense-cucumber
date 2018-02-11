@@ -62,8 +62,8 @@ public class CicController {
     }
     
     @ExceptionHandler(CicRegistrationException.class)
-    public Callable<ResponseEntity<Object>> handleCicRegistrationException (CicRegistrationException e) {
-        return () -> ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).contentType(MediaType.TEXT_PLAIN).body(e.getMessage());
+    public ResponseEntity<Object> handleCicRegistrationException (CicRegistrationException e) {
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).contentType(MediaType.TEXT_PLAIN).body(e.getMessage());
     }
     
     @ExceptionHandler(CicNotFoundException.class)

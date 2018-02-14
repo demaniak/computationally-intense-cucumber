@@ -1,5 +1,5 @@
 FROM azul/zulu-openjdk-alpine:8
-MAINTAINER HS Coetzee <hendrikc@afrigis.co.za>
+MAINTAINER HS Coetzee <hs.coetzee+cic@gmail.com>
 ARG JAR_FILE
 COPY ./target/${JAR_FILE} /app/app.jar
 EXPOSE 8080
